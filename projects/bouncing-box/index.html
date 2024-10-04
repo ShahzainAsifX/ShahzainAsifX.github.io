@@ -7,14 +7,19 @@
 	<script src="jquery.min.js"></script>
 	<style>
 		.box {
-			width: 70px;
-			height: 70px;
-			background-color: teal;
-			font-size: 300%;
-			text-align: center;
+			width: 45px;
+			height: 45px;
+			background-color: rgb(232, 61, 220);
+			border-style;  solid;
+			border-width; 4px;
+			border-radius; 10px;
+			font-size: 250%;
+			font-family; sans-serif;
+			text-align: top;
 			user-select: none;
-			display: block;
+			display: triangle;
 			position: absolute;
+			visibility; hidden; 
 			top: 100px;
 			/* Change me! */
 			left: 0px;
@@ -58,7 +63,7 @@
 
 			// changes the text displayed on the Box
 			function changeBoxText(newText) {
-				box.text(newText);
+				box.css("left", newPositionX);
 			}
 
 			//////////////////////////////////////////////////////////////////
@@ -66,16 +71,23 @@
 			//////////////////////////////////////////////////////////////////
 
 			// TODO 2 - Variable declarations 
-
-
-
+			var positionX = 0;
+			var points = 3;
+			var speed = 10;
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
 			function update() {
-
+               positionX = positionX + speed;
+               if (positionX > 2150) {
+				   speed = speed * -1; 
+			   }
+		       if (positionX < 0) {
+				   speed = speed * -1;
+			   }
+			       moveBoxTo(positionX)
 
 			};
 
@@ -85,9 +97,19 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-
-
+				positionX = 10;
+				points = points + 1 
+				changeBoxText(points);
+				speed += 3
+				if ( speed >= 1) {
+					speed +=3
+				}
+				else if (speed >= -1) {
+					speed -= 3
+				}
 			};
+
+
 
 
 
